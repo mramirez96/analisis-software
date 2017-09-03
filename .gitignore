@@ -132,4 +132,7 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
+# Archivo de libros 
+*.tsv
+
 # End of https://www.gitignore.io/api/java,linux,windows,eclipse
