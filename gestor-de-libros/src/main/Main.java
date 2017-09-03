@@ -1,10 +1,11 @@
 package main;
 
-//Guarda este archivo con el nombre Main.java
-//package ....libros;
-
 import java.io.*;
 import java.util.*;
+
+import entidades.Libro;
+import entidades.Libros;
+import entidades.Funcion;
 
 public class Main {
 
@@ -43,46 +44,20 @@ public class Main {
 				contador[0]++;
 			}
 		};
-		Funcion<Libro> imprimirEnArchivo = new Funcion<Libro>() {
-			@Override
-			public void funcion(Libro libro, Object parametros) {
-				PrintStream archivo = (PrintStream) parametros;
-				archivo.print(libro.getISBN() + "\t");
-				archivo.print(libro.getTitulo() + "\t");
-				archivo.print(libro.getAutor() + "\t");
-				archivo.print(libro.getEditorial() + "\t");
-				archivo.print(libro.getEdicion() + "\t");
-				archivo.print(libro.getAnno_de_publicacion() + "\n");
-			}
-		};
+
 		if (!System.getProperties().get("os.name").equals("Linux") && System.console() != null)
 			try {
 				out = new PrintStream(System.out, true, "CP850");
 				teclado = new Scanner(System.in, "CP850");
 			} catch (UnsupportedEncodingException e) {
 			}
-		Vector<Libro> vector = new Vector<Libro>();
+
 		int i, n;
 		Libro dato = null, libro;
 		int[] contador = { 0 };
 		int opcion, subopcion;
-		String[] campos;
-		try {
-			Scanner entrada = new Scanner(new FileReader(ruta));
-			while (entrada.hasNextLine()) {
-				campos = entrada.nextLine().split("\t");
-				libro = new Libro();
-				libro.setISBN(campos[0]);
-				libro.setTitulo(campos[1]);
-				libro.setAutor(campos[2]);
-				libro.setEditorial(campos[3]);
-				libro.setEdicion(Integer.parseInt(campos[4]));
-				libro.setAnno_de_publicacion(Integer.parseInt(campos[5]));
-				vector.add(libro);
-			}
-			entrada.close();
-		} catch (FileNotFoundException e) {
-		}
+
+		Libros libros = new Libros(ruta);
 		libro = new Libro();
 		do {
 			out.println("MEN\u00DA");
@@ -93,42 +68,43 @@ public class Main {
 			out.println("5.- Ordenar registros");
 			out.println("6.- Listar registros");
 			out.println("7.- Salir");
+
+			// Cuando esto se haga pantalla, dudo que sirva.
 			do {
 				opcion = leer_entero("Seleccione una opci\u00F3n");
 				if (opcion < 1 || opcion > 7)
-					out.println("Opci\u00F3nn no v\u00E1lida.");
+					out.println("Opci\u00F3n no v\u00E1lida.");
 			} while (opcion < 1 || opcion > 7);
 			out.println();
-			if (vector.isEmpty() && opcion != 1 && opcion != 7) {
+			if (libros.isEmpty() && opcion != 1 && opcion != 7) {
 				pausar("No hay registros.\n");
 				continue;
 			}
-			if (opcion < 5) {
+			if (opcion < 5) { // Alta, consulta, actualizaciones, bajas
 				libro.setISBN(leer_cadena("Ingrese el ISBN del libro"));
-				i = vector.indexOf(libro);
-				dato = i < 0 ? null : vector.get(i);
+				dato = libros.get(libro);
 				if (dato != null) {
 					out.println();
 					imprimir.funcion(dato, contador);
 				}
 			}
-			if (opcion == 1 && dato != null)
+			if (opcion == 1 && dato != null) // Alta
 				out.println("El registro ya existe.");
-			else if (opcion >= 2 && opcion <= 4 && dato == null)
+			else if (opcion >= 2 && opcion <= 4 && dato == null) // Consulta, actualizacion, baja
 				out.println("\nRegistro no encontrado.");
 			else
 				switch (opcion) {
-				case 1:
+				case 1: // Alta
 					libro.setTitulo(leer_cadena("Ingrese el titulo"));
 					libro.setAutor(leer_cadena("Ingrese el autor"));
 					libro.setEditorial(leer_cadena("Ingrese el editorial"));
 					libro.setEdicion(leer_entero("Ingrese el edicion"));
 					libro.setAnno_de_publicacion(leer_entero("Ingrese el anno de publicacion"));
-					vector.add(libro);
+					libros.add(libro);
 					libro = new Libro();
 					out.println("\nRegistro agregado correctamente.");
 					break;
-				case 3:
+				case 3: // Actualizacion
 					out.println("Men\u00FA de modificaci\u00F3n de campos");
 					out.println("1.- titulo");
 					out.println("2.- autor");
@@ -159,111 +135,25 @@ public class Main {
 					}
 					out.println("\nRegistro actualizado correctamente.");
 					break;
-				case 4:
-					vector.remove(dato);
+				case 4: // Baja
+					libros.remove(dato);
 					out.println("Registro borrado correctamente.");
 					break;
-				case 5:
-					Collections.sort(vector);
+				case 5: // Ordenar registros
+					libros.ordenar();
 					out.println("Registros ordenados correctamente.");
 					break;
-				case 6:
-					n = vector.size();
+				case 6: // Listar registros
+					n = libros.size();
 					contador[0] = 0;
 					for (i = 0; i < n; i++)
-						imprimir.funcion(vector.get(i), contador);
+						imprimir.funcion(libros.get(i), contador);
 					out.println("Total de registros: " + contador[0] + ".");
 					break;
 				}
 			if (opcion < 7 && opcion >= 1)
 				pausar("");
 		} while (opcion != 7);
-		try {
-			PrintStream salida = new PrintStream(ruta);
-			n = vector.size();
-			for (i = 0; i < n; i++)
-				imprimirEnArchivo.funcion(vector.get(i), salida);
-			salida.close();
-		} catch (FileNotFoundException e) {
-		}
-	}
-}
-
-interface Funcion<T extends Comparable<T>> {
-	void funcion(T dato, Object parametros);
-}
-
-class Libro implements Comparable<Libro> {
-
-	private String ISBN;
-	private String titulo;
-	private String autor;
-	private String editorial;
-	private int edicion;
-	private int anno_de_publicacion;
-
-	@Override
-	public boolean equals(Object libro) {
-		return this == libro || (libro instanceof Libro && ISBN.equals(((Libro) libro).ISBN));
-	}
-
-	@Override
-	public int compareTo(Libro libro) {
-		return ISBN.compareTo(libro.ISBN);
-	}
-
-	@Override
-	public String toString() {
-		return "ISBN               : " + ISBN + "\n" + "titulo             : " + titulo + "\n" + "autor              : "
-				+ autor + "\n" + "editorial          : " + editorial + "\n" + "edicion            : " + edicion + "\n"
-				+ "anno de publicacion: " + anno_de_publicacion + "\n";
-	}
-
-	public String getISBN() {
-		return ISBN;
-	}
-
-	public void setISBN(String ISBN) {
-		this.ISBN = ISBN;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
-	public String getAutor() {
-		return autor;
-	}
-
-	public void setAutor(String autor) {
-		this.autor = autor;
-	}
-
-	public String getEditorial() {
-		return editorial;
-	}
-
-	public void setEditorial(String editorial) {
-		this.editorial = editorial;
-	}
-
-	public int getEdicion() {
-		return edicion;
-	}
-
-	public void setEdicion(int edicion) {
-		this.edicion = edicion;
-	}
-
-	public int getAnno_de_publicacion() {
-		return anno_de_publicacion;
-	}
-
-	public void setAnno_de_publicacion(int anno_de_publicacion) {
-		this.anno_de_publicacion = anno_de_publicacion;
+		libros.guardarLibrosEnArchivo();
 	}
 }
