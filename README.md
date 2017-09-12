@@ -11,8 +11,7 @@
 
 #### 2da entrega (08-09)
 
-1. Imprimir Metricas.doc definido por Mica.
-2. Realizar Grafo de CC al programa del Triángulo hecho por nosotros. 
+1. Realizar grafo de CC al programa del Triángulo hecho por nosotros. 
 
 ### 3ra entrega (15-09)
 
