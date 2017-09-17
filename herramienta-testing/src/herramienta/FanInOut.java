@@ -1,5 +1,9 @@
 package herramienta;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
 import javax.swing.JList;
 
 public class FanInOut {
@@ -29,9 +33,9 @@ public class FanInOut {
 		return fanIn;
 	}
 
-	public static int getFanOut() {
+	public static int getFanOut(String codigo, JList<String> listaMetodos, JList<String> listaArchivos) {
 		int contadorFanOut = 0;
-		/*String rutaArchivo = listaArchivos.getSelectedValue();// .substring(0, listaArchivos.getSelectedValue().indexOf(".java") + 5);//.replace("\\", "\\\\");;
+		String rutaArchivo = listaArchivos.getSelectedValue();// .substring(0, listaArchivos.getSelectedValue().indexOf(".java") + 5);//.replace("\\", "\\\\");;
 		String metodoSelecionado = listaMetodos.getSelectedValue();
 		File archivo = null;
 		FileReader fr = null;
@@ -62,7 +66,7 @@ public class FanInOut {
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
-		}*/
+		}
 		return contadorFanOut;
 	}
 }

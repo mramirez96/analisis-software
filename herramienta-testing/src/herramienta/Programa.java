@@ -758,7 +758,7 @@ public class Programa extends JFrame {
 		textArea.setCaretPosition(0);
 
 		// Lo nuevo
-		Analisis a = new Analisis(codigo, listaMetodos);
+		Analisis a = new Analisis(codigo, listaMetodos, listaArchivos);
 		lbLineasTotales.setText(String.valueOf(a.getLineasMetodo()));
 		lbComentarios.setText(String.valueOf(a.getLineasComentadas()));
 		lbPorcentaje.setText(a.getPorcentajeLineasComentadas());

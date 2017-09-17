@@ -42,19 +42,18 @@ public class Analisis {
 		return volHalstead;
 	}
 
-	public Analisis(String codigo, JList<String> listaMetodos) {
+	public Analisis(String codigo, JList<String> listaMetodos, JList<String> listaArchivos) {
 		super();
 		this.codigo = codigo;
-		actualizarDatosAnalisis(listaMetodos);
+		actualizarDatosAnalisis(listaMetodos, listaArchivos);
 	}
 
-	private void actualizarDatosAnalisis(JList<String> listaMetodos){
+	private void actualizarDatosAnalisis(JList<String> listaMetodos, JList<String> listaArchivos){
 		lineasMetodo = LineaCodigo.cantidadLineas(codigo);
-		lineasComentadas = LineaCodigo.cantidadLineasComentadas(codigo); // cuenta lineas comentadas, no javadocs
+		lineasComentadas = LineaCodigo.cantidadLineasComentadas(codigo);
 		complejidad = ComplejidadCiclomatica.obtener(codigo);
-		fanIn = FanInOut.getFanIn(codigo, listaMetodos); // falta
-		fanOut = FanInOut.getFanOut(); // falta
-
+		fanIn = FanInOut.getFanIn(codigo, listaMetodos); 
+		fanOut = FanInOut.getFanOut(codigo, listaMetodos, listaArchivos);
 		
 		Halstead h = new Halstead(); // falta
 		longHalstead = h.getLongitud();
