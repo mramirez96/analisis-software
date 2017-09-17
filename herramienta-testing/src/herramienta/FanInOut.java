@@ -1,13 +1,12 @@
 package herramienta;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import javax.swing.JList;
 
 public class FanInOut {
-	public static int getFanIn(String codigo) {
+	// Cuenta cuantos métodos llama el método seleccionado
+	public static int getFanIn(String codigo, JList<String> listaMetodos) {
 		int fanIn = 0;
-		/*String[] lineas = codigo.split("\\n");
+		String[] lineas = codigo.split("\\n");
 		String[] metodos = new String[listaMetodos.getModel().getSize() - 1];
 
 		int indice = 0, seleccionado = listaMetodos.getSelectedIndex();
@@ -25,7 +24,7 @@ public class FanInOut {
 					fanIn++;
 				}
 			}
-		}*/
+		}
 
 		return fanIn;
 	}

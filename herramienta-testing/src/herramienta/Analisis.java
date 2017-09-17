@@ -2,6 +2,8 @@ package herramienta;
 
 import java.text.DecimalFormat;
 
+import javax.swing.JList;
+
 
 public class Analisis {
 	private String codigo;
@@ -40,17 +42,17 @@ public class Analisis {
 		return volHalstead;
 	}
 
-	public Analisis(String codigo) {
+	public Analisis(String codigo, JList<String> listaMetodos) {
 		super();
 		this.codigo = codigo;
-		actualizarDatosAnalisis();
+		actualizarDatosAnalisis(listaMetodos);
 	}
 
-	private void actualizarDatosAnalisis(){
+	private void actualizarDatosAnalisis(JList<String> listaMetodos){
 		lineasMetodo = LineaCodigo.cantidadLineas(codigo);
 		lineasComentadas = LineaCodigo.cantidadLineasComentadas(codigo); // cuenta lineas comentadas, no javadocs
 		complejidad = ComplejidadCiclomatica.obtener(codigo);
-		fanIn = FanInOut.getFanIn(codigo); // falta
+		fanIn = FanInOut.getFanIn(codigo, listaMetodos); // falta
 		fanOut = FanInOut.getFanOut(); // falta
 
 		
