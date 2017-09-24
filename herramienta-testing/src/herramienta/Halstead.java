@@ -9,27 +9,27 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 
 public class Halstead {
-	private int longitud;
-	private int volumen;
+	private float longitud;
+	private float volumen;
 
-	public int getLongitud() {
+	public float getLongitud() {
 		return longitud;
 	}
-	public int getVolumen() {
+	public float getVolumen() {
 		return volumen;
 	}
 
-	public Halstead() {
+	public Halstead(String codigo) {
 		// tomar todo lo que haga falta para calcularlo
-		calcularMetricasHalstead();
+		calcularMetricasHalstead(codigo);
 	}
 
-	private void calcularMetricasHalstead() {
-		/*String[] lineas = textArea.getText().split("\\n");
+	private void calcularMetricasHalstead(String codigo) {
+		String[] lineas = codigo.split("\\n");
 		HashMap<String,Integer> operadores = new HashMap<String,Integer>();
 		HashMap<String,Integer> operandos = new HashMap<String,Integer>();
 		
-		Reader reader = new StringReader(textArea.getText());
+		Reader reader = new StringReader(codigo);
 		StreamTokenizer st = new StreamTokenizer(reader);
 		try {
 			int token;
@@ -88,6 +88,60 @@ public class Halstead {
 	    for (int v : operadores.values()) {
 	    	operadoresTotales += v;
 	    }
-	    volumen = (float) (longitud * Math.log10(operandosTotales + operadoresTotales) / Math.log10(2));*/
+	    volumen = (float) (longitud * Math.log10(operandosTotales + operadoresTotales) / Math.log10(2));
+	}
+	
+	private void incrementarContador(HashMap<String, Integer> mapa, String key, int incremento) {
+		int actual = (mapa.containsKey(key)) ? mapa.get(key) : 0;
+		mapa.put(key, actual + incremento );
+	}
+	
+	private boolean esKeyword(String s) {
+		switch(s) {
+			case "abstract":
+			case "for":
+			case "new":
+			case "switch":
+			case "default":
+			case "continue":
+			case "synchronized":
+			case "boolean":
+			case "do":
+			case "if":
+			case "private":
+			case "this":
+			case "break":
+			case "double":
+			case "implements":
+			case "protected":
+			case "throw":
+			case "byte":
+			case "else":
+			case "public":
+			case "throws":
+			case "case":
+			case "enum":
+			case "return":
+			case "catch":
+			case "extends":
+			case "int":
+			case "short":
+			case "try":
+			case "char":
+			case "interface":
+			case "static":
+			case "final":
+			case "void":
+			case "class":
+			case "finally":
+			case "long":
+			case "const":
+			case "float":
+			case "super":
+			case "while":
+				return true;
+		default:
+				return false;
+		}
 	}
 }

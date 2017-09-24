@@ -12,8 +12,8 @@ public class Analisis {
 	private int complejidad;
 	private int fanIn;
 	private int fanOut;
-	private int longHalstead;
-	private int volHalstead;
+	private float longHalstead;
+	private float volHalstead;
 	
 
 	public int getLineasMetodo() {
@@ -35,10 +35,10 @@ public class Analisis {
 	public int getFanOut() {
 		return fanOut;
 	}
-	public int getLongHalstead() {
+	public float getLongHalstead() {
 		return longHalstead;
 	}
-	public int getVolHalstead() {
+	public float getVolHalstead() {
 		return volHalstead;
 	}
 
@@ -55,7 +55,7 @@ public class Analisis {
 		fanIn = FanInOut.getFanIn(codigo, listaMetodos); 
 		fanOut = FanInOut.getFanOut(codigo, listaMetodos, listaArchivos);
 		
-		Halstead h = new Halstead(); // falta
+		Halstead h = new Halstead(codigo); // falta
 		longHalstead = h.getLongitud();
 		volHalstead = h.getVolumen();
 	}
