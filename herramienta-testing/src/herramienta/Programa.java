@@ -325,6 +325,7 @@ public class Programa extends JFrame {
 	private static void actualizarLista(JList<String> lista, String[] elementos) {
 		lista.setModel(new AbstractListModel<String>() {
 			String[] values = elementos;
+				
 
 			public int getSize() {
 				return values.length;
@@ -454,11 +455,11 @@ public class Programa extends JFrame {
 				String[] clases = new String[1];
 				clases[0] = archivo.substring(archivo.lastIndexOf("\\") + 1, archivo.lastIndexOf("."));
 				actualizarLista(listaClases, clases);
-				actualizarLista(listaMetodos, new String[1]);
+				actualizarLista(listaMetodos, new String[0]);
 				textArea.setText("");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	
@@ -468,20 +469,23 @@ public class Programa extends JFrame {
 		try {
 			FileInputStream in = new FileInputStream(listaArchivos.getSelectedValue());
 			CompilationUnit cu = JavaParser.parse(in);
-			ClassOrInterfaceDeclaration clase = cu.getClassByName(listaClases.getSelectedValue()).get();
-
-			List<MethodDeclaration> metodos = clase.getMethods();
-			List<ConstructorDeclaration> constructores = clase.getConstructors();
-
-			String nombres[] = new String[metodos.size() + constructores.size()];
-			for (int i = 0; i < constructores.size(); i++) {
-				nombres[i] = constructores.get(i).getName().toString();
+			if (listaClases.getSelectedValue() != null)
+			{
+				ClassOrInterfaceDeclaration clase = cu.getClassByName(listaClases.getSelectedValue()).get();
+	
+				List<MethodDeclaration> metodos = clase.getMethods();
+				List<ConstructorDeclaration> constructores = clase.getConstructors();
+	
+				String nombres[] = new String[metodos.size() + constructores.size()];
+				for (int i = 0; i < constructores.size(); i++) {
+					nombres[i] = constructores.get(i).getName().toString();
+				}
+				for (int i = 0; i < metodos.size(); i++) {
+					nombres[i + constructores.size()] = metodos.get(i).getName().toString();
+				}
+	
+				actualizarLista(listaMetodos, nombres);
 			}
-			for (int i = 0; i < metodos.size(); i++) {
-				nombres[i + constructores.size()] = metodos.get(i).getName().toString();
-			}
-
-			actualizarLista(listaMetodos, nombres);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
