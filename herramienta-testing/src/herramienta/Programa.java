@@ -78,10 +78,7 @@ public class Programa extends JFrame {
 	private JLabel lbFanOut;
 	private JLabel lbLongitud;
 	private JLabel lbVolumen;
-
-	private int lineasMetodo;
-	private int lineasComentadas;
-
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
