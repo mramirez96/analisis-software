@@ -24,7 +24,6 @@ type
     lblAdaptabilidad: TLabel;
     lblInstalabilidad: TLabel;
     gbFuncionabilidad: TGroupBox;
-    lblPromedioMinimo: TLabel;
     rbRegular1: TRadioButton;
     rbMala1: TRadioButton;
     rbBuena1: TRadioButton;
@@ -165,11 +164,17 @@ var
   LProm: Double;
 begin
   LProm := FModelo.GetPromedioCalculado;
-  Label1.Caption := Format('%.2f', [LProm]);
+
   if LProm >= 8.2 then
-    Label1.Caption := Label1.Caption + ' - SATISFACTORIO'
+  begin
+    Label1.Font.Color := clGreen;
+    Label1.Caption := 'S A T I S F A C T O R I O'
+  end
   else
-    Label1.Caption := Label1.Caption + ' - NO SATISFACTORIO';
+  begin
+    Label1.Font.Color := clRed;
+    Label1.Caption := 'N O    S A T I S F A C T O R I O';
+  end;
 end;
 
 procedure TfrmAlgoritmoCalidad.SetDescripcion(ADescripcion: string);

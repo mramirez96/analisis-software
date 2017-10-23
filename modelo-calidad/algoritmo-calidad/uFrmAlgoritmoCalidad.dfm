@@ -14,14 +14,6 @@ object frmAlgoritmoCalidad: TfrmAlgoritmoCalidad
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object lblPromedioMinimo: TLabel
-    Left = 113
-    Top = 583
-    Width = 294
-    Height = 13
-    Caption = 'Promedio m'#237'nimo para que sea considerado satisfactorio:  8.2'
-    WordWrap = True
-  end
   object lblInfo: TLabel
     Left = 590
     Top = 76
@@ -709,21 +701,21 @@ object frmAlgoritmoCalidad: TfrmAlgoritmoCalidad
     end
   end
   object GroupBox1: TGroupBox
-    Left = 152
-    Top = 612
-    Width = 185
-    Height = 45
-    Caption = 'Promedio y resultado final'
+    Left = 153
+    Top = 588
+    Width = 245
+    Height = 61
+    Caption = 'Resultado final'
     TabOrder = 6
     object Label1: TLabel
       Left = 20
-      Top = 19
-      Width = 37
-      Height = 13
+      Top = 27
+      Width = 42
+      Height = 16
       Caption = 'Label1'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
+      Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
