@@ -3,13 +3,11 @@ package main;
 import java.io.*;
 import java.util.*;
 
-import entidades.Libro;
-import entidades.Libros;
-import entidades.Funcion;
+import entidades.*;
 
 public class Main {
 
-	public static Scanner teclado = new Scanner(System.in);
+	/*public static Scanner teclado = new Scanner(System.in);
 	public static PrintStream out = System.out;
 
 	public static void pausar(String mensage) {
@@ -155,5 +153,10 @@ public class Main {
 				pausar("");
 		} while (opcion != 7);
 		libros.guardarLibrosEnArchivo();
+	}*/
+	
+	public static void main (String[] args) {
+		
+		Grafica ventana = new Grafica();
 	}
 }
