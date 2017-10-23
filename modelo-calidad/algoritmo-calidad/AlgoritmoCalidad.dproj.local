@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2017/09/19 12:30:33.000.652,=C:\Users\mramirez\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/09/19 12:30:57.000.415,C:\Users\mramirez\Documents\RAD Studio\Projects\Project1.dproj=C:\Users\mramirez\Documents\RAD Studio\Projects\AlgoritmoCalidad.dproj</Transaction>
+    <Transaction>2017/09/19 12:31:18.000.076,C:\Users\mramirez\Documents\RAD Studio\Projects\Unit1.dfm=C:\Users\mramirez\Documents\RAD Studio\Projects\uFrmAlgoritmoCalidad.dfm</Transaction>
+    <Transaction>2017/09/19 12:31:18.000.076,C:\Users\mramirez\Documents\RAD Studio\Projects\Unit1.pas=C:\Users\mramirez\Documents\RAD Studio\Projects\uFrmAlgoritmoCalidad.pas</Transaction>
+    <Transaction>2017/09/19 12:31:30.000.291,C:\Users\mramirez\Documents\RAD Studio\Projects\uFrmAlgoritmoCalidad.pas=C:\algoritmo-calidad\uFrmAlgoritmoCalidad.pas</Transaction>
+    <Transaction>2017/09/19 12:31:30.000.291,C:\Users\mramirez\Documents\RAD Studio\Projects\uFrmAlgoritmoCalidad.dfm=C:\algoritmo-calidad\uFrmAlgoritmoCalidad.dfm</Transaction>
+    <Transaction>2017/09/19 12:36:22.000.890,=C:\Users\mramirez\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/09/19 12:36:54.000.166,C:\Users\mramirez\Documents\RAD Studio\Projects\Unit1.pas=C:\Users\mramirez\Documents\RAD Studio\Projects\uClasificacion.pas</Transaction>
+    <Transaction>2017/09/19 12:37:11.000.666,C:\Users\mramirez\Documents\RAD Studio\Projects\uClasificacion.pas=C:\algoritmo-calidad\uClasificacion.pas</Transaction>
+    <Transaction>2017/09/19 12:43:29.000.813,C:\algoritmo-calidad\uClasificacion.pas=C:\algoritmo-calidad\uTipoClasificacion.pas</Transaction>
+    <Transaction>2017/09/19 12:43:36.000.508,=C:\Users\mramirez\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/09/19 12:43:54.000.703,C:\Users\mramirez\Documents\RAD Studio\Projects\Unit1.pas=C:\Users\mramirez\Documents\RAD Studio\Projects\uSubCaracteristica.pas</Transaction>
+    <Transaction>2017/09/19 12:44:01.000.709,C:\Users\mramirez\Documents\RAD Studio\Projects\uSubCaracteristica.pas=C:\algoritmo-calidad\uSubCaracteristica.pas</Transaction>
+    <Transaction>2017/09/19 12:46:19.000.161,=C:\Users\mramirez\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/09/19 12:46:26.000.473,C:\Users\mramirez\Documents\RAD Studio\Projects\Unit1.pas=C:\Users\mramirez\Documents\RAD Studio\Projects\uCalculo.pas</Transaction>
+    <Transaction>2017/09/19 12:46:59.000.796,C:\Users\mramirez\Documents\RAD Studio\Projects\uCalculo.pas=C:\algoritmo-calidad\uCalculo.pas</Transaction>
+    <Transaction>2017/09/19 14:27:02.000.972,=C:\Users\mramirez\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/09/19 14:27:08.000.494,C:\Users\mramirez\Documents\RAD Studio\Projects\Unit1.pas=C:\Users\mramirez\Documents\RAD Studio\Projects\uModelo.pas</Transaction>
+    <Transaction>2017/09/19 14:27:11.000.788,C:\Users\mramirez\Documents\RAD Studio\Projects\uModelo.pas=C:\algoritmo-calidad\uModelo.pas</Transaction>
+    <Transaction>2017/09/19 14:40:31.000.273,C:\Users\mramirez\Documents\RAD Studio\Projects\AlgoritmoCalidad.dproj=C:\algoritmo-calidad\AlgoritmoCalidad.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
