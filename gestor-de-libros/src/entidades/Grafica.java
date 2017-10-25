@@ -16,8 +16,8 @@ public class Grafica extends JFrame{
 	JPanel panel2=new JPanel();
 	
 	
-	public Grafica() { //No olvidar agregar la opcion para que no siga ejecutando despues de cerrar la ventana
-		
+	public Grafica() {
+		//No olvidar agregar la opcion para que no siga ejecutando despues de cerrar la ventana
 		setTitle("Gestor de Libros");
 		getContentPane().setLayout(null);
 		
@@ -93,7 +93,8 @@ public class Grafica extends JFrame{
 		});
 	}
 	
-	private void boton_ayuda() { //Lo relacionado a la ayuda va aca
+	private void boton_ayuda() {
+		//Lo relacionado a la ayuda va aca
 		JButton botonAyuda = new JButton();
 		ImageIcon ayuda = new ImageIcon ("Imagenes/ayuda.jpg");
 		botonAyuda.setIcon(ayuda);
