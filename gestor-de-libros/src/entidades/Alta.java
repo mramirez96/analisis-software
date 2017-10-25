@@ -2,11 +2,13 @@ package entidades;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.text.ParseException;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
+import javax.swing.text.NumberFormatter;
 
 
 public class Alta {
@@ -20,9 +22,10 @@ public class Alta {
 	private JLabel lblAutor;
 	private JTextField editorial;
 	private JLabel lblEditorial;
-	private JTextField edicion;
+	private JFormattedTextField edicion;
 	private JLabel lblEdicion;
 	private JFormattedTextField anio;
+	private MaskFormatter maskAnio;
 	private JLabel lblAnio;
 	private JButton aceptar;
 	Libro libro;
@@ -40,6 +43,7 @@ public class Alta {
 			// callo la excepción
 		}
 		maskISBN.setPlaceholderCharacter('_');
+		maskISBN.setValidCharacters("12345");
 		isbn = new JFormattedTextField(maskISBN);
 		isbn.setBounds(70, 25, 150, 25);
 		panel.add(isbn);
@@ -79,7 +83,11 @@ public class Alta {
 		panel.add(lblEditorial);
 		
 		/******   EDICION   ******/
-		edicion = new JTextField();
+		NumberFormatter numberFormatter = new NumberFormatter(NumberFormat.getIntegerInstance());
+		numberFormatter.setAllowsInvalid(false);
+		numberFormatter.setMinimum(0l); //Optional
+		
+		edicion = new JFormattedTextField(numberFormatter);
 		edicion.setBounds(330, 60, 150, 25);
 		panel.add(edicion);
 		
@@ -90,10 +98,13 @@ public class Alta {
 		
 		/******   ANIO   ******/
 		try {
-			anio = new JFormattedTextField(new MaskFormatter("####"));
+			maskAnio = new MaskFormatter("####");
 		} catch (ParseException e1) {
 			// callo la excepcion
 		}
+		maskAnio.setPlaceholderCharacter('_');
+		anio = new JFormattedTextField(maskAnio);
+		anio.setToolTipText("Formato esperado: AAAA");
 		anio.setBounds(370, 95, 110, 25);
 		panel.add(anio);
 		
@@ -112,20 +123,26 @@ public class Alta {
 		aceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { //falta hacer todos los gets, las validaciones, etc.
 				//esta hecho de esta forma solo para probar que agrege correctamente un libro.
-				libros = new Libros(ruta);
-				
-				libro = new Libro();
-				
-				libro.setISBN(isbn.getText());
-				libro.setTitulo(titulo.getText());
-				libro.setAutor(autor.getText());
-				libro.setEditorial(editorial.getText());
-				libro.setEdicion(Integer.parseInt(edicion.getText()));
-				libro.setAnno_de_publicacion(Integer.parseInt(anio.getText()));
-				
-				libros.add(libro);
-				libros.guardarLibrosEnArchivo();
-				Tabla.refresh_Tabla(libros, modelo);
+				if (isbn.getText().trim().isEmpty() || editorial.getText().trim().isEmpty()
+						|| titulo.getText().trim().isEmpty() || edicion.getText().trim().isEmpty() 
+						|| autor.getText().trim().isEmpty() || anio.getText().trim().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Complete todos los campos");
+				} else {
+					libros = new Libros(ruta);
+					
+					libro = new Libro();
+					
+					libro.setISBN(isbn.getText());
+					libro.setTitulo(titulo.getText());
+					libro.setAutor(autor.getText());
+					libro.setEditorial(editorial.getText());
+					libro.setEdicion(Integer.parseInt(edicion.getText()));
+					libro.setAnno_de_publicacion(Integer.parseInt(anio.getText()));
+
+					libros.add(libro);
+					libros.guardarLibrosEnArchivo();
+					Tabla.refresh_Tabla(libros, modelo);
+				}
 			}
 		});
 		
