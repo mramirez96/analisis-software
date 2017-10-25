@@ -31,7 +31,8 @@ public class Alta {
 	Libro libro;
 	Libros libros;
 	
-	public Alta(JPanel panel, String ruta, DefaultTableModel modelo) { //recibe tambien la ruta, asi cada vez que se haga un alta, se trabaja
+	public Alta(JPanel panel, String ruta, DefaultTableModel modelo) {
+		//recibe tambien la ruta, asi cada vez que se haga un alta, se trabaja
 		//directamente sobre el archivo que contiene a los libros
 		panel.setLayout(null);
 		

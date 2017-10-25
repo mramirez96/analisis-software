@@ -4,7 +4,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class Tabla {
 	
-	public static void cargar_Tabla(Libros libros, DefaultTableModel modelo) { //Para cargar la tabla de entrada, o cada vez que se aprieta el boton de actualizar
+	public static void cargar_Tabla(Libros libros, DefaultTableModel modelo) {
+		//Para cargar la tabla de entrada, o cada vez que se aprieta el boton de actualizar
 		libros = new Libros("libros.tsv"); //Carga cada linea del archivo
 		
 		Object []data = new Object[6]; //el tam representa la cantidad de columnas, isbn, titulo.....
