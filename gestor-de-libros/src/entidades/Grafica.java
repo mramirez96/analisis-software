@@ -21,12 +21,13 @@ public class Grafica extends JFrame{
 		setTitle("Gestor de Libros");
 		getContentPane().setLayout(null);
 		
-		crear_Titulo();
-		crear_Pestañas();
 		crear_Tabla();
+		
+		crear_Titulo();
+		crear_pestaÃ±as();
 		boton_refresh();
 		boton_ayuda();
-		setSize(750,700); ////Tamaño ventana principal
+		setSize(750,700); ////Tamaï¿½o ventana principal
 		setVisible(true);
 	
 	}
@@ -39,7 +40,7 @@ public class Grafica extends JFrame{
 		modelo.setColumnIdentifiers(columnNames);
 		JTable table = new JTable(modelo);
 		
-		cargar_Tabla();
+		Tabla.cargar_Tabla(libros, modelo);
 		
 		 TableRowSorter<DefaultTableModel> ordena = new TableRowSorter<DefaultTableModel>(modelo);
 		 table.setRowSorter(ordena); //Estos 2 permiten ordenar la tabla de mayor a menor o viceversa segun campo seleccionado
@@ -50,24 +51,24 @@ public class Grafica extends JFrame{
         getContentPane().add(scrollPane);
 	}
 	
-	private void crear_Pestañas() {
+	private void crear_pestaÃ±as() {
 	
-   	 JTabbedPane pestañas=new JTabbedPane();
-       pestañas.setBounds(90, 100, 550, 250); /////////////////////Posicion pestañas
+   	 JTabbedPane pestaÃ±as=new JTabbedPane();
+       pestaÃ±as.setBounds(90, 100, 550, 250); /////////////////////Posicion pestaÃ±as
        
        JPanel panel1=new JPanel(); //Por el momento se hace de esta forma
-       pestañas.addTab("Consultas", panel1);
+       pestaÃ±as.addTab("Consultas", panel1);
        
-       Alta alta = new Alta (panel2,ruta);
-       pestañas.addTab("Altas", panel2);
+       Alta alta = new Alta (panel2,ruta,modelo);
+       pestaÃ±as.addTab("Altas", panel2);
        
        JPanel panel3=new JPanel();
-       pestañas.addTab("Bajas", panel3);
+       pestaÃ±as.addTab("Bajas", panel3);
 
        JPanel panel4=new JPanel();
-       pestañas.addTab("Modificaciones", panel4);
+       pestaÃ±as.addTab("Modificaciones", panel4);
        
-       getContentPane().add(pestañas);	
+       getContentPane().add(pestaÃ±as);	
 	}
 	
 	private void crear_Titulo() {
@@ -87,14 +88,9 @@ public class Grafica extends JFrame{
 		
 		botonRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				while (modelo.getRowCount() > 0) { //No me fije mucho en esto asi que lo hice de esta forma, para "actualizar" 
-					//en realida borra todo lo que tenga la tabla y carga de vuelta todo lo que hay en el archivo
-					modelo.removeRow(0);			
-				}
-				cargar_Tabla();
+				Tabla.refresh_Tabla(libros, modelo);
 			}
 		});
-		
 	}
 	
 	private void boton_ayuda() { //Lo relacionado a la ayuda va aca
@@ -110,22 +106,5 @@ public class Grafica extends JFrame{
 			}
 		});
 		
-	}
-	
-	private void cargar_Tabla () { //Para cargar la tabla de entrada, o cada vez que se aprieta el boton de actualizar
-		libros = new Libros("libros.tsv"); //Carga cada linea del archivo
-		
-		Object []data = new Object[6]; //el tam representa la cantidad de columnas, isbn, titulo.....
-		
-		for(int i=0; i< libros.size(); i++) {
-			
-			data[0] = libros.get(i).getISBN();
-			data[1] = libros.get(i).getTitulo();
-			data[2] = libros.get(i).getAutor();
-			data[3] = libros.get(i).getEditorial();
-			data[4] = libros.get(i).getEdicion();
-			data[5] = libros.get(i).getAnno_de_publicacion();
-			modelo.addRow(data); //lo agrego al modelo en lugar de a la tabla directamente
-		}
 	}
 }

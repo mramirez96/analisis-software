@@ -2,52 +2,109 @@ package entidades;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 
 
 public class Alta {
 	
-	private JTextField isbn;
+	private JFormattedTextField isbn;
+	private MaskFormatter maskISBN;
+	private JLabel lblIsbn;
 	private JTextField titulo;
+	private JLabel lblTitulo;
 	private JTextField autor;
-	private JTextField edicion;
+	private JLabel lblAutor;
 	private JTextField editorial;
-	private JTextField anio;
+	private JLabel lblEditorial;
+	private JTextField edicion;
+	private JLabel lblEdicion;
+	private JFormattedTextField anio;
+	private JLabel lblAnio;
 	private JButton aceptar;
 	Libro libro;
 	Libros libros;
 	
-	public Alta(JPanel panel, String ruta) { //recibe tambien la ruta, asi cada vez que se haga un alta, se trabaja
+	public Alta(JPanel panel, String ruta, DefaultTableModel modelo) { //recibe tambien la ruta, asi cada vez que se haga un alta, se trabaja
 		//directamente sobre el archivo que contiene a los libros
 		panel.setLayout(null);
 		
-		isbn = new JTextField();
-		isbn.setBounds(10, 25, 100, 30);
+		
+		/******   ISBN   ******/
+		try {
+			maskISBN = new MaskFormatter("###-###-####-##-#");
+		} catch (ParseException e1) {
+			// callo la excepción
+		}
+		maskISBN.setPlaceholderCharacter('_');
+		isbn = new JFormattedTextField(maskISBN);
+		isbn.setBounds(70, 25, 150, 25);
 		panel.add(isbn);
 		
+		lblIsbn = new JLabel("ISBN");
+		lblIsbn.setBounds(30, 25, 100, 25);
+		panel.add(lblIsbn);
+		
+		
+		/******   TITULO   ******/
 		titulo = new JTextField();
-		titulo.setBounds(120, 25, 100, 30);
+		titulo.setBounds(70, 60, 150, 25);
 		panel.add(titulo);
 		
+		lblTitulo = new JLabel("Titulo");
+		lblTitulo.setBounds(30, 60, 100, 25);
+		panel.add(lblTitulo);
+		
+		
+		/******   AUTOR   ******/
 		autor = new JTextField();
-		autor.setBounds(240, 25, 100, 30);
+		autor.setBounds(70, 95, 150, 25);
 		panel.add(autor);
 		
-		edicion = new JTextField();
-		edicion.setBounds(360, 25, 100, 30);
-		panel.add(edicion);
+		lblAutor = new JLabel("Autor");
+		lblAutor.setBounds(30, 95, 100, 25);
+		panel.add(lblAutor);
 		
+		
+		/******   EDITORIAL   ******/
 		editorial = new JTextField();
-		editorial.setBounds(40, 75, 100, 30);
+		editorial.setBounds(330, 25, 150, 25);
 		panel.add(editorial);
 		
-		anio = new JTextField();
-		anio.setBounds(180, 75, 100, 30);
+		lblEditorial = new JLabel("Editorial");
+		lblEditorial.setBounds(270, 25, 100, 25);
+		panel.add(lblEditorial);
+		
+		/******   EDICION   ******/
+		edicion = new JTextField();
+		edicion.setBounds(330, 60, 150, 25);
+		panel.add(edicion);
+		
+		lblEdicion = new JLabel("Edicion");
+		lblEdicion.setBounds(270, 60, 100, 25);
+		panel.add(lblEdicion);
+		
+		
+		/******   ANIO   ******/
+		try {
+			anio = new JFormattedTextField(new MaskFormatter("####"));
+		} catch (ParseException e1) {
+			// callo la excepcion
+		}
+		anio.setBounds(370, 95, 110, 25);
 		panel.add(anio);
 		
+		lblAnio = new JLabel("Año publicación");
+		lblAnio.setBounds(270, 95, 100, 25);
+		panel.add(lblAnio);
+		
+		
+		/******   ACEPTAR   ******/		
 		aceptar = new JButton();
-		aceptar.setBounds(200, 150, 100, 30);
+		aceptar.setBounds(200, 150, 100, 25);
 		aceptar.setText("Aceptar");
 	
 		panel.add(aceptar);
@@ -68,7 +125,7 @@ public class Alta {
 				
 				libros.add(libro);
 				libros.guardarLibrosEnArchivo();
-				
+				Tabla.refresh_Tabla(libros, modelo);
 			}
 		});
 		
