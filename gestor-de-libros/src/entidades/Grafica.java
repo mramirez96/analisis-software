@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -14,7 +16,7 @@ public class Grafica extends JFrame{
 	String ruta = "libros.tsv";
 	private Libros libros = new Libros(ruta);
 	JPanel panel2=new JPanel();
-	
+	private TableRowSorter<DefaultTableModel> modeloOrdenado;
 	
 	public Grafica() {
 		//No olvidar agregar la opcion para que no siga ejecutando despues de cerrar la ventana
@@ -42,8 +44,8 @@ public class Grafica extends JFrame{
 		
 		Tabla.cargar_Tabla(libros, modelo);
 		
-		 TableRowSorter<DefaultTableModel> ordena = new TableRowSorter<DefaultTableModel>(modelo);
-		 table.setRowSorter(ordena); //Estos 2 permiten ordenar la tabla de mayor a menor o viceversa segun campo seleccionado
+		 this.modeloOrdenado = new TableRowSorter<DefaultTableModel>(modelo);
+		 table.setRowSorter(this.modeloOrdenado); //Estos 2 permiten ordenar la tabla de mayor a menor o viceversa segun campo seleccionado
 		
 		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         JScrollPane scrollPane = new JScrollPane(table);
@@ -52,20 +54,27 @@ public class Grafica extends JFrame{
 	}
 	
 	private void crear_pestañas() {
-	
-   	 JTabbedPane pestañas=new JTabbedPane();
+	TableRowSorter<DefaultTableModel> modeloOrdenado = this.modeloOrdenado;
+   	   JTabbedPane pestañas = new JTabbedPane();
        pestañas.setBounds(90, 100, 550, 250); /////////////////////Posicion pestañas
-       
-       JPanel panel1=new JPanel(); //Por el momento se hace de esta forma
+       pestañas.addChangeListener(new ChangeListener() { 
+    	   	//Detecto el cambio entre pestañas para actualizar la tabla
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				Tabla.delete_filter(modeloOrdenado);
+			}
+    	});
+       JPanel panel1 = new JPanel(); //Por el momento se hace de esta forma
+       Consulta consulta = new Consulta (panel1,ruta,this.modeloOrdenado);
        pestañas.addTab("Consultas", panel1);
        
        Alta alta = new Alta (panel2,ruta,modelo);
        pestañas.addTab("Altas", panel2);
        
-       JPanel panel3=new JPanel();
+       JPanel panel3 = new JPanel();
        pestañas.addTab("Bajas", panel3);
 
-       JPanel panel4=new JPanel();
+       JPanel panel4 = new JPanel();
        pestañas.addTab("Modificaciones", panel4);
        
        getContentPane().add(pestañas);	

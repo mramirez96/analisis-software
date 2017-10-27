@@ -1,6 +1,8 @@
 package entidades;
 
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class Tabla {
 	
@@ -28,5 +30,9 @@ public class Tabla {
 			modelo.removeRow(0);			
 		}
 		cargar_Tabla(libros, modelo);
+	}
+	
+	public static void delete_filter(TableRowSorter<DefaultTableModel> modeloOrdenado) {
+		modeloOrdenado.setRowFilter(RowFilter.regexFilter("^", 1));
 	}
 }
