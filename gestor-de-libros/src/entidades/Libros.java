@@ -85,4 +85,12 @@ public class Libros extends Vector<Libro> {
 			archivo.print(libro.getAnno_de_publicacion() + "\n");
 		}
 	};
+	
+	@Override
+	public synchronized boolean add(Libro libro) {
+		if(this.contains(libro))
+			return false;
+		else
+			return Libros.super.add(libro);
+	}
 }

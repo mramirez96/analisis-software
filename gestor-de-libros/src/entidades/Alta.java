@@ -140,9 +140,13 @@ public class Alta {
 					libro.setEdicion(Integer.parseInt(edicion.getText()));
 					libro.setAnno_de_publicacion(Integer.parseInt(anio.getText()));
 
-					libros.add(libro);
-					libros.guardarLibrosEnArchivo();
-					Tabla.refresh_Tabla(libros, modelo);
+					if (libros.add(libro)) {
+						libros.guardarLibrosEnArchivo();
+						Tabla.refresh_Tabla(libros, modelo);
+					} else {
+						JOptionPane.showMessageDialog(null, "Ya fue ingresado un libro con el ISBN " + libro.getISBN());
+					}
+					
 				}
 			}
 		});
