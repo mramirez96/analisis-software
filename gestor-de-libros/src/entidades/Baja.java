@@ -46,7 +46,6 @@ public class Baja {
 			// callo la excepción
 		}
 		maskISBN.setPlaceholderCharacter('_');
-		maskISBN.setValidCharacters("12345");
 		isbn = new JFormattedTextField(maskISBN);
 		isbn.setBounds(70, 20, 150, 25);
 		panel.add(isbn);
