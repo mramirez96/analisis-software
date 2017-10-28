@@ -72,6 +72,7 @@ public class Grafica extends JFrame{
        pestañas.addTab("Altas", panel2);
        
        JPanel panel3 = new JPanel();
+       Baja baja = new Baja(panel3,ruta,modelo);
        pestañas.addTab("Bajas", panel3);
 
        JPanel panel4 = new JPanel();
