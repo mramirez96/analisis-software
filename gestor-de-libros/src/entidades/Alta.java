@@ -124,9 +124,9 @@ public class Alta {
 		aceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { //falta hacer todos los gets, las validaciones, etc.
 				//esta hecho de esta forma solo para probar que agrege correctamente un libro.
-				if (isbn.getText().trim().isEmpty() || editorial.getText().trim().isEmpty()
+				if (isbn.getValue() == null || editorial.getText().trim().isEmpty()
 						|| titulo.getText().trim().isEmpty() || edicion.getText().trim().isEmpty() 
-						|| autor.getText().trim().isEmpty() || anio.getText().trim().isEmpty()) {
+						|| autor.getText().trim().isEmpty() || anio.getValue() == null) {
 					JOptionPane.showMessageDialog(null, "Complete todos los campos");
 				} else {
 					libros = new Libros(ruta);
