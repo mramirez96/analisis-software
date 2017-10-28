@@ -84,9 +84,11 @@ public class Alta {
 		panel.add(lblEditorial);
 		
 		/******   EDICION   ******/
-		NumberFormatter numberFormatter = new NumberFormatter(NumberFormat.getIntegerInstance());
+		NumberFormat numberFormat = NumberFormat.getIntegerInstance();
+		numberFormat.setGroupingUsed(false);
+		NumberFormatter numberFormatter = new NumberFormatter(numberFormat);
 		numberFormatter.setAllowsInvalid(false);
-		numberFormatter.setMinimum(0l); //Optional
+		numberFormatter.setMinimum(0l);
 		
 		edicion = new JFormattedTextField(numberFormatter);
 		edicion.setBounds(330, 60, 150, 25);
