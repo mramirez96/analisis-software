@@ -84,9 +84,11 @@ public class Alta {
 		panel.add(lblEditorial);
 		
 		/******   EDICION   ******/
-		NumberFormatter numberFormatter = new NumberFormatter(NumberFormat.getIntegerInstance());
+		NumberFormat numberFormat = NumberFormat.getIntegerInstance();
+		numberFormat.setGroupingUsed(false);
+		NumberFormatter numberFormatter = new NumberFormatter(numberFormat);
 		numberFormatter.setAllowsInvalid(false);
-		numberFormatter.setMinimum(0l); //Optional
+		numberFormatter.setMinimum(0l);
 		
 		edicion = new JFormattedTextField(numberFormatter);
 		edicion.setBounds(330, 60, 150, 25);
@@ -124,9 +126,9 @@ public class Alta {
 		aceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { //falta hacer todos los gets, las validaciones, etc.
 				//esta hecho de esta forma solo para probar que agrege correctamente un libro.
-				if (isbn.getText().trim().isEmpty() || editorial.getText().trim().isEmpty()
+				if (isbn.getValue() == null || editorial.getText().trim().isEmpty()
 						|| titulo.getText().trim().isEmpty() || edicion.getText().trim().isEmpty() 
-						|| autor.getText().trim().isEmpty() || anio.getText().trim().isEmpty()) {
+						|| autor.getText().trim().isEmpty() || anio.getValue() == null) {
 					JOptionPane.showMessageDialog(null, "Complete todos los campos");
 				} else {
 					libros = new Libros(ruta);
