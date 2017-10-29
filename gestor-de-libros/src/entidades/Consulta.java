@@ -3,10 +3,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
@@ -27,6 +29,8 @@ public class Consulta {
 	private MaskFormatter maskAnio;
 	private JLabel lblAnio;
 	private JButton aceptar;
+	private JButton limpiar;
+
 	Libro libro;
 	Libros libros;
 	
@@ -39,7 +43,7 @@ public class Consulta {
 		} catch (ParseException e1) {
 			// callo la excepción
 		}
-		maskISBN.setPlaceholderCharacter('_');
+		maskISBN.setPlaceholderCharacter(' ');
 		maskISBN.setValidCharacters("12345");
 		isbn = new JFormattedTextField(maskISBN);
 		isbn.setBounds(70, 25, 150, 25);
@@ -99,7 +103,6 @@ public class Consulta {
 		} catch (ParseException e1) {
 			// callo la excepcion
 		}
-		maskAnio.setPlaceholderCharacter('_');
 		anio = new JFormattedTextField(maskAnio);
 		anio.setToolTipText("Formato esperado: AAAA");
 		anio.setBounds(370, 95, 110, 25);
@@ -112,15 +115,61 @@ public class Consulta {
 		
 		/******   ACEPTAR   ******/		
 		aceptar = new JButton();
-		aceptar.setBounds(200, 150, 100, 25);
+		aceptar.setBounds(100, 150, 100, 25);
 		aceptar.setText("Aceptar");
-	
+		/******   ACEPTAR   ******/		
+		limpiar = new JButton();
+		limpiar.setBounds(275, 150, 100, 25);
+		limpiar.setText("Limpiar");
+		
+		panel.add(limpiar);
 		panel.add(aceptar);
 		
 		aceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				libros = new Libros(ruta);
-				modeloOrdenado.setRowFilter(RowFilter.regexFilter("(?i).*" + titulo.getText() + ".*", 1));
+
+			public void actionPerformed(ActionEvent e) {	
+				ArrayList<RowFilter<TableModel, Object>> filtros = new ArrayList<RowFilter<TableModel, Object>>();
+				/*if(!isbn.getText().trim().isEmpty()) {
+					System.out.println("sbn.getText()");
+					filtros.add(RowFilter.regexFilter("(?i).*" + isbn.getText() + ".*", 0));
+				}*/
+				
+				if(!titulo.getText().trim().isEmpty()) {
+					filtros.add(RowFilter.regexFilter("(?i).*" + titulo.getText() + ".*", 1));
+				}
+				
+				if(!autor.getText().trim().isEmpty()) {
+					filtros.add(RowFilter.regexFilter("(?i).*" + autor.getText() + ".*", 2));
+				}
+				
+				if(!editorial.getText().trim().isEmpty()) {
+					filtros.add(RowFilter.regexFilter("(?i).*" + editorial.getText() + ".*", 3));
+				}
+				
+				if(!edicion.getText().trim().isEmpty()) {
+					filtros.add(RowFilter.regexFilter("(?i).*" + edicion.getText() + ".*", 4));
+				}
+				
+				if(!anio.getText().trim().isEmpty()) {
+					filtros.add(RowFilter.regexFilter("(?i).*" + anio.getText() + ".*", 5));
+				}
+				
+				RowFilter filtroAnd = RowFilter.andFilter(filtros);
+				modeloOrdenado.setRowFilter(filtroAnd);
+
+			}
+		});
+		
+		limpiar.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {	
+				isbn.setText("");
+				titulo.setText("");
+				autor.setText("");
+				editorial.setText("");
+				edicion.setValue(null);
+				anio.setValue(null);
+				modeloOrdenado.setRowFilter(RowFilter.regexFilter("^", 1));
 			}
 		});
 	}
