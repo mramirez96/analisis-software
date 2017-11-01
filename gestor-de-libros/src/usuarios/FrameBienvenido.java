@@ -1,6 +1,5 @@
 package usuarios;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,14 +8,11 @@ import javax.swing.border.EmptyBorder;
 
 import entidades.Grafica;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JRadioButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,10 +21,6 @@ public class FrameBienvenido extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField passwordField;
 	private JTextField txtUsuario;
-	
-	private JRadioButton rdbtnUsuarioExiste;
-	private JRadioButton rdbtnNuevoUsuario;
-	private ButtonGroup bg;
 
 	String ruta = "usuarios.tsv";
 
@@ -52,68 +44,65 @@ public class FrameBienvenido extends JFrame {
 	 * Create the frame.
 	 */
 	public FrameBienvenido() {
+		setTitle("Gestor de libros");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 340, 300);
+		setBounds(100, 100, 340, 246);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-
-		
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 301, 50);
-		contentPane.add(panel);
-		
-		rdbtnUsuarioExiste = new JRadioButton("Tengo un usario");
-		panel.add(rdbtnUsuarioExiste);
-		rdbtnNuevoUsuario = new JRadioButton("No tengo un usuario");
-		panel.add(rdbtnNuevoUsuario);
-		
-		bg = new ButtonGroup();
-		bg.add(rdbtnNuevoUsuario);
-		bg.add(rdbtnUsuarioExiste);
-		rdbtnUsuarioExiste.setSelected(true);
-		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(67, 147, 182, 20);
+		passwordField.setBounds(63, 100, 182, 20);
 		contentPane.add(passwordField);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(67, 87, 182, 20);
+		txtUsuario.setBounds(63, 40, 182, 20);
 		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
 		JLabel lblUsuario = new JLabel("Usuario");
-		lblUsuario.setBounds(67, 72, 46, 14);
+		lblUsuario.setBounds(63, 25, 46, 14);
 		contentPane.add(lblUsuario);
 		
 		JLabel lblContrasea = new JLabel("Contraseña");
-		lblContrasea.setBounds(67, 131, 109, 14);
+		lblContrasea.setBounds(63, 84, 109, 14);
 		contentPane.add(lblContrasea);
 		
 		
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(112, 202, 89, 23);
-		contentPane.add(btnAceptar);
-		btnAceptar.addActionListener(new ActionListener() {
+		JButton btnIniciar = new JButton("Iniciar sesión");
+		btnIniciar.setBounds(28, 155, 122, 23);
+		contentPane.add(btnIniciar);
+		
+		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Usuarios us = new Usuarios(ruta);
+				Usuario user = new Usuario();
+				if (usuarioValido(user)) 
+				{
+					us.add(user);
+					us.guardarLibrosEnArchivo();
+					JOptionPane.showMessageDialog(null, "El usuario fue registrado con éxito");
+				} else {
+					JOptionPane.showMessageDialog(null, "Complete los campos");
+				}
+				
+			}
+		});
+		btnRegistrar.setBounds(160, 155, 122, 23);
+		contentPane.add(btnRegistrar);
+		btnIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Usuarios us = new Usuarios(ruta);
 				Usuario user = new Usuario();
 				if (usuarioValido(user)) {
-					if (rdbtnNuevoUsuario.isSelected()) {
-						us.add(user);
-						us.guardarLibrosEnArchivo();
-						JOptionPane.showMessageDialog(null, "El usuario fue registrado con éxito");
+					if (!us.existeUsuario(user)) {
+						JOptionPane.showMessageDialog(null, "El usuario o contraseña son incorrectos");
 					} else {
-						if (!us.existeUsuario(user)) {
-							JOptionPane.showMessageDialog(null, "El usuario o contraseña son incorrectos");
-						} else {
-							JOptionPane.showMessageDialog(null, "Bienvenido al gestor de libros!");
-							setVisible(false);
-							Grafica g = new Grafica();
-						}
+						JOptionPane.showMessageDialog(null, "Bienvenido al gestor de libros!");
+						setVisible(false);
+						Grafica g = new Grafica();
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Complete los campos");
