@@ -6,8 +6,8 @@ public class Libro implements Comparable<Libro> {
 	private String titulo;
 	private String autor;
 	private String editorial;
-	private String edicion;
-	private String anno_de_publicacion;
+	private int edicion;
+	private int anno_de_publicacion;
 
 	@Override
 	public boolean equals(Object libro) {
@@ -58,19 +58,19 @@ public class Libro implements Comparable<Libro> {
 		this.editorial = editorial;
 	}
 
-	public String getEdicion() {
+	public int getEdicion() {
 		return edicion;
 	}
 
-	public void setEdicion(String edicion) {
+	public void setEdicion(int edicion) {
 		this.edicion = edicion;
 	}
 
-	public String getAnno_de_publicacion() {
+	public int getAnno_de_publicacion() {
 		return anno_de_publicacion;
 	}
 
-	public void setAnno_de_publicacion(String anno_de_publicacion) {
+	public void setAnno_de_publicacion(int anno_de_publicacion) {
 		this.anno_de_publicacion = anno_de_publicacion;
 	}
 }

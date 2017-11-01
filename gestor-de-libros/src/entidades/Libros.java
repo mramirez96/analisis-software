@@ -31,8 +31,8 @@ public class Libros extends Vector<Libro> {
 				libro.setTitulo(campos[1]);
 				libro.setAutor(campos[2]);
 				libro.setEditorial(campos[3]);
-				libro.setEdicion(campos[4]);
-				libro.setAnno_de_publicacion(campos[5]);
+				libro.setEdicion(Integer.parseInt(campos[4]));
+				libro.setAnno_de_publicacion(Integer.parseInt(campos[5]));
 				this.add(libro);
 			}
 			entrada.close();
