@@ -100,22 +100,35 @@ public class FrameBienvenido extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Usuarios us = new Usuarios(ruta);
-				Usuario user = new Usuario(txtUsuario.getText(), passwordField.getText());
-				if (rdbtnNuevoUsuario.isSelected()) {
-					us.add(user);
-					us.guardarLibrosEnArchivo();
-					JOptionPane.showMessageDialog(null, "El usuario fue registrado con éxito");
-				} else {
-					if (!us.existeUsuario(user)) {
-						JOptionPane.showMessageDialog(null, "El usuario o contraseña son incorrectos");
+				Usuario user = new Usuario();
+				if (usuarioValido(user)) {
+					if (rdbtnNuevoUsuario.isSelected()) {
+						us.add(user);
+						us.guardarLibrosEnArchivo();
+						JOptionPane.showMessageDialog(null, "El usuario fue registrado con éxito");
 					} else {
-						JOptionPane.showMessageDialog(null, "Bienvenido al gestor de libros!");
-						setVisible(false);
-						Grafica g = new Grafica();
+						if (!us.existeUsuario(user)) {
+							JOptionPane.showMessageDialog(null, "El usuario o contraseña son incorrectos");
+						} else {
+							JOptionPane.showMessageDialog(null, "Bienvenido al gestor de libros!");
+							setVisible(false);
+							Grafica g = new Grafica();
+						}
 					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Complete los campos");
 				}
-				
 			}
 		});
+	}	
+	
+	private boolean usuarioValido(Usuario us) {
+		if (txtUsuario.getText().isEmpty() || passwordField.getText().isEmpty()) {
+			return false;
+		} else {
+			us.setUsuario(txtUsuario.getText());
+			us.setContrasenia(passwordField.getText());
+			return true;
+		}
 	}
 }

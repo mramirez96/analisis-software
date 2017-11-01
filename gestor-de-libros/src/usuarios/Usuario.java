@@ -33,5 +33,9 @@ class Usuario {
 		this.usuario = usuario;
 		this.contrasenia = contrasenia;
 	}
+
+	public Usuario() {
+		super();
+	}
 	
 }
