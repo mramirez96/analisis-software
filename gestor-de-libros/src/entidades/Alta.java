@@ -139,8 +139,8 @@ public class Alta {
 					libro.setTitulo(titulo.getText());
 					libro.setAutor(autor.getText());
 					libro.setEditorial(editorial.getText());
-					libro.setEdicion(edicion.getText());
-					libro.setAnno_de_publicacion(anio.getText());
+					libro.setEdicion(Integer.parseInt(edicion.getText()));
+					libro.setAnno_de_publicacion(Integer.parseInt(anio.getText()));
 
 					if (libros.add(libro)) {
 						libros.guardarLibrosEnArchivo();
