@@ -28,5 +28,10 @@ class Usuario {
 		this.contrasenia = contrasenia;
 	}
 
+	public Usuario(String usuario, String contrasenia) {
+		super();
+		this.usuario = usuario;
+		this.contrasenia = contrasenia;
+	}
 	
 }
