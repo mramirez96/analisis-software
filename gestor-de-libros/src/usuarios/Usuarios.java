@@ -52,7 +52,33 @@ public class Usuarios extends Vector<Usuario> {
 		}
 	}
 	
+	/**
+	 * Devuelve si existe la combinación usuario - contraseña
+	 * @param us
+	 * @return
+	 */
 	public boolean existeUsuario(Usuario us) {
 		return (indexOf(us) > -1);
+	}
+	
+	/**
+	 * Devuelve si existe el nombre de usuario
+	 * @param user
+	 * @return
+	 */
+	private boolean existeUsuario(String user) {
+		for (Usuario us : this) {
+			if (us.getUsuario().equals(user))
+				return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public synchronized boolean add(Usuario usuario) {
+		if (existeUsuario(usuario.getUsuario()))
+			return false;
+		else
+			return Usuarios.super.add(usuario);
 	}
 }

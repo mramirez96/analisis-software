@@ -81,9 +81,14 @@ public class FrameBienvenido extends JFrame {
 				Usuario user = new Usuario();
 				if (usuarioValido(user)) 
 				{
-					us.add(user);
-					us.guardarLibrosEnArchivo();
-					JOptionPane.showMessageDialog(null, "El usuario fue registrado con éxito");
+					boolean wasAdded = us.add(user);
+					if (wasAdded) {
+						us.guardarLibrosEnArchivo();
+						JOptionPane.showMessageDialog(null, "El usuario fue registrado con éxito");
+					} else {
+						JOptionPane.showMessageDialog(null, "El nombre de usuario ya existe en los registros");
+					}
+					
 				} else {
 					JOptionPane.showMessageDialog(null, "Complete los campos");
 				}
