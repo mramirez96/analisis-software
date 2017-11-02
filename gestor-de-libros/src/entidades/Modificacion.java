@@ -119,7 +119,6 @@ public class Modificacion {
 		NumberFormat numberFormat = NumberFormat.getIntegerInstance();
 		numberFormat.setGroupingUsed(false);
 		NumberFormatter numberFormatter = new NumberFormatter(numberFormat);
-		numberFormatter.setAllowsInvalid(false);
 		numberFormatter.setMinimum(0l);
 		
 		edicion = new JFormattedTextField(numberFormatter);

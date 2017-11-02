@@ -120,7 +120,6 @@ public class Baja {
 		
 		/******   EDICION   ******/
 		NumberFormatter numberFormatter = new NumberFormatter(NumberFormat.getIntegerInstance());
-		numberFormatter.setAllowsInvalid(false);
 		numberFormatter.setMinimum(0l); //Optional
 		
 		edicion = new JFormattedTextField(numberFormatter);
