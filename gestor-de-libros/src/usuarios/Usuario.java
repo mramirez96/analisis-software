@@ -25,9 +25,14 @@ class Usuario {
 	}
 
 	public void setContrasenia(String contrasenia) {
-		this.contrasenia = contrasenia;
+		this.contrasenia = encrypt.encriptar(contrasenia);
 	}
-
+	public boolean verifyPassword(String pass) {
+		if(encrypt.encriptar(pass) == this.contrasenia){
+			return true;
+		}
+		return false;
+	}
 	public Usuario(String usuario, String contrasenia) {
 		super();
 		this.usuario = usuario;
