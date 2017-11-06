@@ -43,6 +43,7 @@ public class Grafica extends JFrame{
 		modelo = new DefaultTableModel();
 		modelo.setColumnIdentifiers(columnNames);
 		JTable table = new JTable(modelo);
+		table.setEnabled(false);
 		
 		Tabla.cargar_Tabla(libros, modelo);
 		
