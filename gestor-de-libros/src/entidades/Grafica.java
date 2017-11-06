@@ -27,7 +27,6 @@ public class Grafica extends JFrame{
 		
 		crear_Titulo();
 		crear_pestañas();
-		boton_refresh();
 		boton_ayuda();
 		setSize(750,700); ////Tama�o ventana principal
 		setVisible(true);
@@ -87,21 +86,6 @@ public class Grafica extends JFrame{
 		JLabel etiqueta = new JLabel(imagen);
 		etiqueta.setBounds(0,5,1024,90);
 		getContentPane().add(etiqueta);	
-	}
-	
-	private void boton_refresh() {
-		JButton botonRefresh = new JButton();
-		ImageIcon refresh = new ImageIcon ("Imagenes/Refresh.jpg");
-		botonRefresh.setIcon(refresh);
-		botonRefresh.setBounds(667,320,50,50);
-		//(595,200,50,50)
-		getContentPane().add(botonRefresh);
-		
-		botonRefresh.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Tabla.refresh_Tabla(libros, modelo);
-			}
-		});
 	}
 	
 	private void boton_ayuda() {
