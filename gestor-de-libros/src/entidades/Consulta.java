@@ -129,10 +129,9 @@ public class Consulta {
 
 			public void actionPerformed(ActionEvent e) {	
 				ArrayList<RowFilter<TableModel, Object>> filtros = new ArrayList<RowFilter<TableModel, Object>>();
-				/*if(!isbn.getText().trim().isEmpty()) {
-					System.out.println("sbn.getText()");
+				if(isbn.getValue() != null && !isbn.getText().contains(" ")) {
 					filtros.add(RowFilter.regexFilter("(?i).*" + isbn.getText() + ".*", 0));
-				}*/
+				}
 				
 				if(!titulo.getText().trim().isEmpty()) {
 					filtros.add(RowFilter.regexFilter("(?i).*" + titulo.getText() + ".*", 1));
@@ -163,6 +162,7 @@ public class Consulta {
 		limpiar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {	
+				isbn.setValue(null);
 				isbn.setText("");
 				titulo.setText("");
 				autor.setText("");
