@@ -1,5 +1,6 @@
 ﻿package entidades;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,28 +13,36 @@ import java.awt.Toolkit;
 
 public class Grafica extends JFrame{
 	
+	private boolean adminUser;
 	private DefaultTableModel modelo;
 	private JTable table;
 	String ruta = "TSV\\libros.tsv";
 	private Libros libros = new Libros(ruta);
+	JPanel panel1=new JPanel();
 	JPanel panel2=new JPanel();
+	JPanel panel3=new JPanel();
+	JPanel panel4=new JPanel();
 	private TableRowSorter<DefaultTableModel> modeloOrdenado;
 	
-	public Grafica() {
+	public Grafica(boolean adminUser) {
 		//No olvidar agregar la opcion para que no siga ejecutando despues de cerrar la ventana
 		
 		setTitle("Gestor de Libros");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("Imagenes/Icono.png"));
 		getContentPane().setLayout(null);
+		getContentPane().setBackground(new Color(222,184,135));
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		this.adminUser = adminUser;
 		
 		crear_Tabla();
-		
 		crear_Titulo();
 		crear_pestañas();
 		boton_ayuda();
 		setSize(750,700); ////Tama�o ventana principal
 		setVisible(true);
-	
+		
+		setLocationRelativeTo(null);
 	}
 	private void crear_Tabla() {
 		
@@ -67,22 +76,27 @@ public class Grafica extends JFrame{
 				Tabla.delete_filter(modeloOrdenado);
 			}
     	});
-       JPanel panel1 = new JPanel(); //Por el momento se hace de esta forma
+       
        Consulta consulta = new Consulta (panel1,ruta,this.modeloOrdenado);
        pestañas.addTab("Consultas", panel1);
+       panel1.setBackground(new Color(218,165,32));
        
+       if (adminUser) {
+    	   
        Alta alta = new Alta (panel2,ruta,modelo);
        pestañas.addTab("Altas", panel2);
+       panel2.setBackground(new Color(218,165,32));
        
-       JPanel panel3 = new JPanel();
        Baja baja = new Baja(panel3,ruta,modelo);
        pestañas.addTab("Bajas", panel3);
+       panel3.setBackground(new Color(218,165,32));
 
-       JPanel panel4 = new JPanel();
        Modificacion modif = new Modificacion(panel4,ruta,modelo);
        pestañas.addTab("Modificaciones", panel4);
+       panel4.setBackground(new Color(218,165,32));
+       }
        
-       getContentPane().add(pestañas);	
+       getContentPane().add(pestañas);
 	}
 	
 	private void crear_Titulo() {
@@ -98,6 +112,7 @@ public class Grafica extends JFrame{
 		ImageIcon ayuda = new ImageIcon ("Imagenes/ayuda.jpg");
 		botonAyuda.setIcon(ayuda);
 		botonAyuda.setBounds(20,320,50,50);
+		botonAyuda.setBackground(Color.blue);
 		getContentPane().add(botonAyuda);
 		
 		botonAyuda.addActionListener(new ActionListener() {

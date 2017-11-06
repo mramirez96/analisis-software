@@ -30,6 +30,7 @@ public class FrameBienvenido extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("Imagenes/Icono.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 340, 246);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -48,12 +49,12 @@ public class FrameBienvenido extends JFrame {
 		lblUsuario.setBounds(63, 25, 46, 14);
 		contentPane.add(lblUsuario);
 		
-		JLabel lblContrasea = new JLabel("Contraseña");
+		JLabel lblContrasea = new JLabel("Contrase\u00f1a");
 		lblContrasea.setBounds(63, 84, 109, 14);
 		contentPane.add(lblContrasea);
 		
 		
-		JButton btnIniciar = new JButton("Iniciar sesión");
+		JButton btnIniciar = new JButton("Iniciar sesi\u00f3n");
 		btnIniciar.setBounds(28, 155, 122, 23);
 		contentPane.add(btnIniciar);
 		
@@ -66,8 +67,10 @@ public class FrameBienvenido extends JFrame {
 				{
 					boolean wasAdded = us.add(user);
 					if (wasAdded) {
+						txtUsuario.setText("");
+						passwordField.setText("");
 						us.guardarLibrosEnArchivo();
-						JOptionPane.showMessageDialog(null, "El usuario fue registrado con éxito");
+						JOptionPane.showMessageDialog(null, "El usuario fue registrado con \u00e9xito");
 					} else {
 						JOptionPane.showMessageDialog(null, "El nombre de usuario ya existe en los registros");
 					}
@@ -86,11 +89,19 @@ public class FrameBienvenido extends JFrame {
 				Usuario user = new Usuario();
 				if (usuarioValido(user)) {
 					if (!us.existeUsuario(user)) {
-						JOptionPane.showMessageDialog(null, "El usuario o contraseña son incorrectos");
+						txtUsuario.setText("");
+						passwordField.setText("");
+						JOptionPane.showMessageDialog(null, "El usuario o contrase\u00f1a son incorrectos");
 					} else {
 						JOptionPane.showMessageDialog(null, "Bienvenido al gestor de libros!");
 						setVisible(false);
-						Grafica g = new Grafica();
+						
+						boolean adminUser = false;
+						
+						if (txtUsuario.getText().equals("admin") && passwordField.getText().equals("admin"))
+							adminUser = true;
+						
+						Grafica g = new Grafica(adminUser);
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Complete los campos");

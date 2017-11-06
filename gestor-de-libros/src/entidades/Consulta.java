@@ -41,7 +41,7 @@ public class Consulta {
 		try {
 			maskISBN = new MaskFormatter("###-###-####-##-#");
 		} catch (ParseException e1) {
-			// callo la excepción
+			// callo la excepcion
 		}
 		maskISBN.setPlaceholderCharacter(' ');
 		isbn = new JFormattedTextField(maskISBN);
@@ -58,7 +58,7 @@ public class Consulta {
 		titulo.setBounds(70, 60, 150, 25);
 		panel.add(titulo);
 		
-		lblTitulo = new JLabel("Titulo");
+		lblTitulo = new JLabel("T\u00edtulo");
 		lblTitulo.setBounds(30, 60, 100, 25);
 		panel.add(lblTitulo);
 		
@@ -92,7 +92,7 @@ public class Consulta {
 		edicion.setBounds(330, 60, 150, 25);
 		panel.add(edicion);
 		
-		lblEdicion = new JLabel("Edicion");
+		lblEdicion = new JLabel("Edici\u00f3n");
 		lblEdicion.setBounds(270, 60, 100, 25);
 		panel.add(lblEdicion);
 		
@@ -105,10 +105,11 @@ public class Consulta {
 		}
 		anio = new JFormattedTextField(maskAnio);
 		anio.setToolTipText("Formato esperado: AAAA");
-		anio.setBounds(370, 95, 110, 25);
+		anio.setBounds(355, 95, 125, 25);
+		//anio.setBounds(370, 95, 110, 25);
 		panel.add(anio);
 		
-		lblAnio = new JLabel("Año publicación");
+		lblAnio = new JLabel("A\u00f1o de publ.");
 		lblAnio.setBounds(270, 95, 100, 25);
 		panel.add(lblAnio);
 		

@@ -7,7 +7,7 @@ class encrypt {
 	    char array[]=linea.toCharArray(); 
 	     
 	    for(int i=0;i<array.length;i++){ 
-	        array[i]=(char)(array[i]+(char)5); 
+	    		array[i]=(char)(array[i]+(char)5); 
 	    } 
 	    String encriptado =String.valueOf(array);
 	    

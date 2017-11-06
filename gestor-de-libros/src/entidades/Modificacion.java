@@ -43,7 +43,7 @@ public class Modificacion {
 		try {
 			maskISBN = new MaskFormatter("###-###-####-##-#");
 		} catch (ParseException e1) {
-			// callo la excepción
+			// callo la excepcion
 		}
 		maskISBN.setPlaceholderCharacter('_');
 		isbn = new JFormattedTextField(maskISBN);
@@ -91,7 +91,7 @@ public class Modificacion {
 		titulo.setBounds(70, 80, 150, 25);
 		panel.add(titulo);
 		
-		lblTitulo = new JLabel("Titulo");
+		lblTitulo = new JLabel("T\u00edtulo");
 		lblTitulo.setBounds(30, 80, 100, 25);
 		panel.add(lblTitulo);
 		
@@ -125,7 +125,7 @@ public class Modificacion {
 		edicion.setBounds(330, 100, 150, 25);
 		panel.add(edicion);
 		
-		lblEdicion = new JLabel("Edicion");
+		lblEdicion = new JLabel("Edici\u00f3n");
 		lblEdicion.setBounds(270, 100, 100, 25);
 		panel.add(lblEdicion);
 		
@@ -138,10 +138,11 @@ public class Modificacion {
 		}
 		anio = new JFormattedTextField(maskAnio);
 		anio.setToolTipText("Formato esperado: AAAA");
-		anio.setBounds(370, 135, 110, 25);
+		anio.setBounds(355, 135, 125, 25);
+		//anio.setBounds(370, 135, 110, 25);
 		panel.add(anio);
 		
-		lblAnio = new JLabel("Año publicación");
+		lblAnio = new JLabel("A\u00f1o de publ.");
 		lblAnio.setBounds(270, 135, 100, 25);
 		panel.add(lblAnio);
 		
@@ -166,7 +167,7 @@ public class Modificacion {
 					if (editorial.getText().trim().isEmpty()
 							|| titulo.getText().trim().isEmpty() || edicion.getText().trim().isEmpty() 
 							|| autor.getText().trim().isEmpty() || anio.getValue() == null) {
-						JOptionPane.showMessageDialog(null, "Hay campos que no tienen valores válidos");
+						JOptionPane.showMessageDialog(null, "Hay campos que no tienen valores v\u00e1lidos");
 					} else {
 						libro = libros.get(libro);
 						if (libro != null) {
