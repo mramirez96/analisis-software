@@ -1,6 +1,7 @@
 package usuarios;
 
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -26,6 +27,7 @@ public class FrameBienvenido extends JFrame {
 
 	public FrameBienvenido() {
 		setTitle("Gestor de libros");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("Imagenes/Icono.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 340, 246);
 		contentPane = new JPanel();

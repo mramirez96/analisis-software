@@ -8,6 +8,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import java.awt.Toolkit;
 
 public class Grafica extends JFrame{
 	
@@ -20,7 +21,9 @@ public class Grafica extends JFrame{
 	
 	public Grafica() {
 		//No olvidar agregar la opcion para que no siga ejecutando despues de cerrar la ventana
+		
 		setTitle("Gestor de Libros");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("Imagenes/Icono.png"));
 		getContentPane().setLayout(null);
 		
 		crear_Tabla();
