@@ -44,7 +44,6 @@ public class Consulta {
 			// callo la excepción
 		}
 		maskISBN.setPlaceholderCharacter(' ');
-		maskISBN.setValidCharacters("12345");
 		isbn = new JFormattedTextField(maskISBN);
 		isbn.setBounds(70, 25, 150, 25);
 		panel.add(isbn);
