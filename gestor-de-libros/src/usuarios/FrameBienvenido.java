@@ -22,27 +22,8 @@ public class FrameBienvenido extends JFrame {
 	private JPasswordField passwordField;
 	private JTextField txtUsuario;
 
-	String ruta = "usuarios.tsv";
+	String ruta = "TSV\\usuarios.tsv";
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FrameBienvenido frame = new FrameBienvenido();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public FrameBienvenido() {
 		setTitle("Gestor de libros");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -114,6 +95,8 @@ public class FrameBienvenido extends JFrame {
 				}
 			}
 		});
+		
+		setVisible(true);
 	}	
 	
 	private boolean usuarioValido(Usuario us) {

@@ -1,4 +1,4 @@
-package entidades;
+﻿package entidades;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -13,7 +13,7 @@ public class Grafica extends JFrame{
 	
 	private DefaultTableModel modelo;
 	private JTable table;
-	String ruta = "libros.tsv";
+	String ruta = "TSV\\libros.tsv";
 	private Libros libros = new Libros(ruta);
 	JPanel panel2=new JPanel();
 	private TableRowSorter<DefaultTableModel> modeloOrdenado;
