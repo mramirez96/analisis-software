@@ -39,12 +39,15 @@ public class Consulta {
 		panel.setLayout(null);
 		/******   ISBN   ******/
 		try {
-			maskISBN = new MaskFormatter("###-###-####-##-#");
+			maskISBN = new MaskFormatter("***-***-****-**-*");
 		} catch (ParseException e1) {
 			// callo la excepcion
 		}
+		
 		maskISBN.setPlaceholderCharacter(' ');
+		maskISBN.setValidCharacters("0123456789 ");
 		isbn = new JFormattedTextField(maskISBN);
+		
 		isbn.setBounds(70, 25, 150, 25);
 		panel.add(isbn);
 		
@@ -83,10 +86,12 @@ public class Consulta {
 		panel.add(lblEditorial);
 		
 		/******   EDICION   ******/
+		
 		NumberFormat numberFormat = NumberFormat.getIntegerInstance();
 		numberFormat.setGroupingUsed(false);
 		NumberFormatter numberFormatter = new NumberFormatter(numberFormat);
 		numberFormatter.setMinimum(0l);
+		
 		
 		edicion = new JFormattedTextField(numberFormatter);
 		edicion.setBounds(330, 60, 150, 25);
@@ -130,8 +135,18 @@ public class Consulta {
 
 			public void actionPerformed(ActionEvent e) {	
 				ArrayList<RowFilter<TableModel, Object>> filtros = new ArrayList<RowFilter<TableModel, Object>>();
-				if(isbn.getValue() != null && !isbn.getText().contains(" ")) {
-					filtros.add(RowFilter.regexFilter("(?i).*" + isbn.getText() + ".*", 0));
+				if(isbn.getValue() != null) {
+					String filter = "";
+					if (isbn.getText().contains(" ")) {
+						for (String partOfIsbn : isbn.getText().split("-")) {
+							if(!partOfIsbn.trim().isEmpty())
+								filter += partOfIsbn + "-";
+						} 
+					} else {
+						filter = isbn.getText();
+					}
+							
+					filtros.add(RowFilter.regexFilter("(?i).*" + filter + ".*", 0));
 				}
 				
 				if(!titulo.getText().trim().isEmpty()) {
