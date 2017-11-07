@@ -30,7 +30,7 @@ public class Grafica extends JFrame{
 		setTitle("Gestor de Libros");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("Imagenes/Icono.png"));
 		getContentPane().setLayout(null);
-		getContentPane().setBackground(new Color(222,184,135));
+		getContentPane().setBackground(new Color(245, 245, 220));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		this.adminUser = adminUser;
@@ -60,7 +60,7 @@ public class Grafica extends JFrame{
 		 table.setRowSorter(this.modeloOrdenado); //Estos 2 permiten ordenar la tabla de mayor a menor o viceversa segun campo seleccionado
 		
 		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
-        JScrollPane scrollPane = new JScrollPane(table);
+		JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBounds(18,390,700,250); //////////////////////Posicion tabla
         getContentPane().add(scrollPane);
 	}
@@ -79,21 +79,21 @@ public class Grafica extends JFrame{
        
        Consulta consulta = new Consulta (panel1,ruta,this.modeloOrdenado);
        pestañas.addTab("Consultas", panel1);
-       panel1.setBackground(new Color(218,165,32));
+       panel1.setBackground(new Color(245, 222, 179));
        
        if (adminUser) {
     	   
        Alta alta = new Alta (panel2,ruta,modelo);
        pestañas.addTab("Altas", panel2);
-       panel2.setBackground(new Color(218,165,32));
+       panel2.setBackground(new Color(245, 222, 179));
        
        Baja baja = new Baja(panel3,ruta,modelo);
        pestañas.addTab("Bajas", panel3);
-       panel3.setBackground(new Color(218,165,32));
+       panel3.setBackground(new Color(245, 222, 179));
 
        Modificacion modif = new Modificacion(panel4,ruta,modelo);
        pestañas.addTab("Modificaciones", panel4);
-       panel4.setBackground(new Color(218,165,32));
+       panel4.setBackground(new Color(245, 222, 179));
        }
        
        getContentPane().add(pestañas);
@@ -111,8 +111,9 @@ public class Grafica extends JFrame{
 		JButton botonAyuda = new JButton();
 		ImageIcon ayuda = new ImageIcon ("Imagenes/ayuda.jpg");
 		botonAyuda.setIcon(ayuda);
-		botonAyuda.setBounds(20,320,50,50);
-		botonAyuda.setBackground(Color.blue);
+		botonAyuda.setBounds(675,323,43,43);
+		botonAyuda.setBackground(new Color(245, 245, 220));
+		botonAyuda.setBorderPainted(false);
 		getContentPane().add(botonAyuda);
 		
 		botonAyuda.addActionListener(new ActionListener() {
