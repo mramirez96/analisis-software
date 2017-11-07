@@ -47,7 +47,7 @@ public class Grafica extends JFrame{
 	private void crear_Tabla() {
 		
 		
-		String[] columnNames = {"ISBN", "Titulo", "Autor", "Editorial", "Edicion", "Anio de publicacion"};
+		String[] columnNames = {"ISBN", "T\u00edtulo", "Autor", "Editorial", "Edici\u00f3n", "A\u00f1o de publicacion"};
 		
 		modelo = new DefaultTableModel();
 		modelo.setColumnIdentifiers(columnNames);
