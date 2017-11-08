@@ -34,7 +34,7 @@ public class Consulta {
 	Libro libro;
 	Libros libros;
 	
-	Consulta(JPanel panel, String ruta, TableRowSorter<DefaultTableModel> modeloOrdenado) {
+	public Consulta(JPanel panel, String ruta, TableRowSorter<DefaultTableModel> modeloOrdenado) {
 
 		panel.setLayout(null);
 		/******   ISBN   ******/
