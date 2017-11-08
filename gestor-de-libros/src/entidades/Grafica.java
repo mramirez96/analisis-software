@@ -84,20 +84,20 @@ public class Grafica extends JFrame{
        pestañas.addTab("Consultas", panel1);
        panel1.setBackground(new Color(245, 222, 179));
        
-       if (adminUser) {
-    	   
        Alta alta = new Alta (panel2,ruta,modelo);
        pestañas.addTab("Altas", panel2);
+       pestañas.setEnabledAt(1, adminUser);
        panel2.setBackground(new Color(245, 222, 179));
        
        Baja baja = new Baja(panel3,ruta,modelo);
        pestañas.addTab("Bajas", panel3);
+       pestañas.setEnabledAt(2, adminUser);
        panel3.setBackground(new Color(245, 222, 179));
 
        Modificacion modif = new Modificacion(panel4,ruta,modelo);
        pestañas.addTab("Modificaciones", panel4);
+       pestañas.setEnabledAt(3, adminUser);
        panel4.setBackground(new Color(245, 222, 179));
-       }
        
        getContentPane().add(pestañas);
 	}
