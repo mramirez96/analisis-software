@@ -93,12 +93,12 @@ public class FrameBienvenido extends JFrame {
 						passwordField.setText("");
 						JOptionPane.showMessageDialog(null, "El usuario o contrase\u00f1a son incorrectos");
 					} else {
-						JOptionPane.showMessageDialog(null, "¡Bienvenido al gestor de libros!");
+						JOptionPane.showMessageDialog(null, "Â¡Bienvenido al gestor de libros!");
 						setVisible(false);
 						
 						boolean adminUser = false;
 						
-						if (txtUsuario.getText().equals("admin") && passwordField.getText().equals("admin"))
+						if (user.getUsuario().equals("admin"))
 							adminUser = true;
 						
 						Grafica g = new Grafica(adminUser);
