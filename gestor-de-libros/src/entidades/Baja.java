@@ -140,13 +140,12 @@ public class Baja {
 		}
 		anio = new JFormattedTextField(maskAnio);
 		anio.setToolTipText("Formato esperado: AAAA");
-		anio.setBounds(355, 135, 125, 25);
-		//anio.setBounds(370, 135, 110, 25);
+		anio.setBounds(390, 135, 90, 25);
 		anio.setEnabled(false);
 		panel.add(anio);
 		
-		lblAnio = new JLabel("A\u00f1o de publ.");
-		lblAnio.setBounds(270, 135, 100, 25);
+		lblAnio = new JLabel("A\u00f1o de publicaci\u00f3n");
+		lblAnio.setBounds(270, 135, 120, 25);
 		panel.add(lblAnio);
 		
 		

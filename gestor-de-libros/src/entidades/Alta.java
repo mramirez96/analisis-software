@@ -106,12 +106,12 @@ public class Alta {
 		maskAnio.setPlaceholderCharacter('_');
 		anio = new JFormattedTextField(maskAnio);
 		anio.setToolTipText("Formato esperado: AAAA");
-		anio.setBounds(355, 95, 125, 25);
-		//anio.setBounds(370, 95, 110, 25);
+		anio.setBounds(390, 95, 90, 25);
 		panel.add(anio);
 		
-		lblAnio = new JLabel("A\u00f1o de publ.");
-		lblAnio.setBounds(270, 95, 100, 25);
+		
+		lblAnio = new JLabel("A\u00f1o de publicaci\u00f3n");
+		lblAnio.setBounds(270, 95, 120, 25);
 		panel.add(lblAnio);
 		
 		
