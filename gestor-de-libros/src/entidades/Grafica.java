@@ -1,9 +1,12 @@
 ﻿package entidades;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -118,7 +121,12 @@ public class Grafica extends JFrame{
 		
 		botonAyuda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("aiudaaaaa"); 
+				try {
+					File file = new File("Manual de usuario.pdf");
+					Desktop.getDesktop().open(file);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "El manual de usuario no se encuentra disponible.", "¡Ops!", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		
