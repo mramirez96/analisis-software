@@ -1,0 +1,17 @@
+Requisitos:  
+- Java versión 1.8  
+- 1.3 MB de espacio en disco  
+- Compatible con Windows Vista SP2, Windows 7 SP1 y versiones superiores
+- 128 MB de memoria RAM
+
+
+Instrucciones de instalación:
+1. Ejecute el archivo Setup-Ges-Thor.exe
+2. Elija la ruta destino donde desea instalar el programa y presione Install
+3. Una vez que finalice, presione Close
+4. El programa ya está listo para su uso. En la ruta destino encontrará el ejecutable Ges.Thor.exe
+
+
+Instrucciones de uso:
+Lea el manual de usuario, lo tendrá disponible cuando instale el programa.
+
