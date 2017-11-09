@@ -6,6 +6,8 @@ import java.io.PrintStream;
 import java.util.Scanner;
 import java.util.Vector;
 
+import entidades.Log;
+
 
 public class Usuarios extends Vector<Usuario> {
 	private String RutaArchivo;
@@ -37,7 +39,7 @@ public class Usuarios extends Vector<Usuario> {
 	/**
 	 * Vuelca la información del vector a un archivo.
 	 */
-	public void guardarLibrosEnArchivo() {
+	public void guardarUsuariosEnArchivo() {
 		try {
 			int i;
 			PrintStream salida = new PrintStream(RutaArchivo);

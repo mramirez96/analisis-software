@@ -69,7 +69,7 @@ public class FrameBienvenido extends JFrame {
 					if (wasAdded) {
 						txtUsuario.setText("");
 						passwordField.setText("");
-						us.guardarLibrosEnArchivo();
+						us.guardarUsuariosEnArchivo();
 						JOptionPane.showMessageDialog(null, "El usuario fue registrado con \u00e9xito");
 					} else {
 						JOptionPane.showMessageDialog(null, "El nombre de usuario ya existe en los registros");
