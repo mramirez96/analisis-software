@@ -32,12 +32,12 @@ public class Baja {
 	private JLabel lblAnio;
 	private JButton eliminar;
 	private JButton buscar;
-	Libro libro;
-	Libros libros;
+	private Libro libro;
+	private Libros libros;
 	
-	public Baja(JPanel panel, String ruta, DefaultTableModel modelo) {
+	public Baja(JPanel panel, String ruta, DefaultTableModel modelo, Libros libros) {
 		panel.setLayout(null);
-		
+		this.libros = libros;
 		
 		/******   ISBN   ******/
 		try {
@@ -65,9 +65,7 @@ public class Baja {
 			public void actionPerformed(ActionEvent e) {
 				if (isbn.getValue() == null || isbn.getText().contains("_")) {
 					JOptionPane.showMessageDialog(null, "Ingrese el ISBN del libro a dar de baja");
-				} else {
-					libros = new Libros(ruta);
-					
+				} else {					
 					libro = new Libro();
 					libro.setISBN(isbn.getText());
 					libro = libros.get(libro);
@@ -161,7 +159,6 @@ public class Baja {
 				if (isbn.getValue() == null || isbn.getText().contains("_")) {
 					JOptionPane.showMessageDialog(null, "Ingrese el ISBN del libro a dar de baja");
 				} else {
-					libros = new Libros(ruta);
 					
 					libro = new Libro();
 					libro.setISBN(isbn.getText());

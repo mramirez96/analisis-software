@@ -30,9 +30,6 @@ public class Consulta {
 	private JLabel lblAnio;
 	private JButton aceptar;
 	private JButton limpiar;
-
-	Libro libro;
-	Libros libros;
 	
 	public Consulta(JPanel panel, String ruta, TableRowSorter<DefaultTableModel> modeloOrdenado) {
 

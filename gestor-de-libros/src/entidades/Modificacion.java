@@ -32,12 +32,12 @@ public class Modificacion {
 	private JLabel lblAnio;
 	private JButton modificar;
 	private JButton buscar;
-	Libro libro;
-	Libros libros;
+	private Libro libro;
+	private Libros libros;
 	
-	public Modificacion(JPanel panel, String ruta, DefaultTableModel modelo) {
+	public Modificacion(JPanel panel, String ruta, DefaultTableModel modelo, Libros libros) {
 		panel.setLayout(null);
-		
+		this.libros = libros;
 		
 		/******   ISBN   ******/
 		try {
@@ -65,9 +65,7 @@ public class Modificacion {
 			public void actionPerformed(ActionEvent e) {
 				if (isbn.getValue() == null || isbn.getText().contains("_")) {
 					JOptionPane.showMessageDialog(null, "Ingrese el ISBN del libro a modificar");
-				} else {
-					libros = new Libros(ruta);
-					
+				} else {					
 					libro = new Libro();
 					libro.setISBN(isbn.getText());
 					libro = libros.get(libro);
@@ -157,9 +155,7 @@ public class Modificacion {
 			public void actionPerformed(ActionEvent e) {
 				if (isbn.getValue() == null || isbn.getText().contains("_")) {
 					JOptionPane.showMessageDialog(null, "Ingrese el ISBN del libro a modificar");
-				} else {
-					libros = new Libros(ruta);
-					
+				} else {					
 					libro = new Libro();
 					libro.setISBN(isbn.getText());
 					
