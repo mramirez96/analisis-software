@@ -5,6 +5,8 @@ import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 import javax.swing.*;
@@ -34,7 +36,14 @@ public class Grafica extends JFrame{
 		setIconImage(Toolkit.getDefaultToolkit().getImage("Imagenes/Icono.png"));
 		getContentPane().setLayout(null);
 		getContentPane().setBackground(new Color(245, 245, 220));
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // lo hago así para guardar los libros en el evento
+	    addWindowListener(new WindowAdapter() {
+	        @Override
+	        public void windowClosing(WindowEvent event) {
+	        	dispose(); // llamo al dispose
+	        }
+	    });
 		
 		this.adminUser = adminUser;
 		
@@ -133,8 +142,8 @@ public class Grafica extends JFrame{
 	}
 	
 	public void dispose() {
-		Grafica.super.dispose();
-		libros = new Libros(ruta);
-		libros.guardarLibrosEnArchivo();
+		libros.guardarLibrosEnArchivo(); // guardo libros antes de liberar
+		Grafica.super.dispose(); // libero
+		System.exit(0); // cierro aplicacion
 	}
 }
