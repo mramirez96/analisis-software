@@ -173,6 +173,7 @@ public class Modificacion {
 							libro.setAnno_de_publicacion(Integer.parseInt(anio.getText()));
 						}
 						libros.guardarLibrosEnArchivo();
+						Log.writeLog("LIBROS | Modificado libro ISBN " + libro.getISBN());
 						Tabla.refresh_Tabla(libros, modelo);
 						
 						modificar.setEnabled(false);

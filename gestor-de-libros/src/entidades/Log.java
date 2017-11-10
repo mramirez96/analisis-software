@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 
 public class Log {
-	private static String _RUTA = "TSV\\Log.txt";
+	private static String _RUTA = "TSV\\log.txt";
 			
 	public static void writeLog(String mensaje) {
 		String existingLogs = getLogs();

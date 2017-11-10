@@ -142,6 +142,7 @@ public class Alta {
 
 					if (libros.add(libro)) {
 						libros.guardarLibrosEnArchivo();
+						Log.writeLog("LIBROS | Alta de libro ISBN " + libro.getISBN());
 						Tabla.refresh_Tabla(libros, modelo);
 					} else {
 						JOptionPane.showMessageDialog(null, "Ya fue ingresado un libro con el ISBN " + libro.getISBN());

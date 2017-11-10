@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import entidades.Grafica;
+import entidades.Log;
 
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
@@ -70,6 +71,7 @@ public class FrameBienvenido extends JFrame {
 						txtUsuario.setText("");
 						passwordField.setText("");
 						us.guardarUsuariosEnArchivo();
+						Log.writeLog("USUARIOS | Alta de usuario " + user.getUsuario());
 						JOptionPane.showMessageDialog(null, "El usuario fue registrado con \u00e9xito");
 					} else {
 						JOptionPane.showMessageDialog(null, "El nombre de usuario ya existe en los registros");

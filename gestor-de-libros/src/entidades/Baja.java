@@ -165,6 +165,7 @@ public class Baja {
 					
 					libros.remove(libro);
 					libros.guardarLibrosEnArchivo();
+					Log.writeLog("LIBROS | Baja de libro ISBN " + libro.getISBN());
 					Tabla.refresh_Tabla(libros, modelo);
 					
 					eliminar.setEnabled(false);
